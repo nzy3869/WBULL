@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="cn.wbull.system.dao.IResourceMapper">
+	<resultMap type="cn.wbull.system.model.Resource" id="resourceResultMap">
+		<id property="id" column="id"/>
+		<result property="reid" column="reid"/>
+		<result property="rename" column="rename"/>
+		<result property="type" column="type"/>
+		<result property="enabled" column="enabled"/>
+		<result property="remark" column="remark"/>
+		<result property="pid" column="pid"/>
+		<result property="revalue" column="revalue"/>
+		<result property="leaf" column="leaf"/>
+	</resultMap>
+	
+	<insert id="addResource" parameterType="cn.wbull.system.model.Resource" >
+		INSERT INTO t_s_resource (uid,uname,sex,tel,enabled,password,create_date,remark) VALUES (#{uid},#{uname},#{sex},#{tel},#{enabled},#{password},#{createDate},#{remark})
+	</insert>
+	
+	<select id="getAllResources" resultMap="resourceResultMap">
+		SELECT * FROM t_s_resource
+	</select>
+	
+	<select id="getResourceByRoid" parameterType="java.lang.Integer" resultMap="resourceResultMap">
+		SELECT * FROM t_s_resource re,t_s_role_resource rore WHERE rore.resource_id = re.id AND rore.role_id = #{roid}
+	</select>
+	
+	<delete id="deleteResource" parameterType="java.lang.Integer">
+		DELETE FROM t_s_resource WHERE reid = #{reid}
+	</delete>
+
+	<update id="updateResource" parameterType="cn.wbull.system.model.Resource">
+		UPDATE t_s_resource
+		<set>
+			<if test="rename != null">
+				rename = #{rename}
+			</if>
+			<if test="type != null">
+				type = #{type}
+			</if>
+			<if test="enabled != null">
+				enabled = #{enabled}
+			</if>
+			<if test="remark != null">
+				remark = #{remark}
+			</if>
+			<if test="pid != null">
+				pid = #{pid}
+			</if>
+			<if test="revalue != null">
+				revalue = #{revalue}
+			</if>
+			<if test="leaf != null">
+				leaf = #{leaf}
+			</if>
+		</set>
+		WHERE reid = #{reid}
+	</update>
+</mapper>

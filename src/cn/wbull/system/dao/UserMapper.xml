@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="cn.wbull.system.dao.IUserMapper">
+	<resultMap type="cn.wbull.system.model.User" id="userResultMap">
+		<id property="id" column="id"/>
+		<result property="uid" column="uid"/>
+		<result property="uname" column="uname"/>
+		<result property="sex" column="sex"/>
+		<result property="tel" column="tel"/>
+		<result property="enabled" column="enabled"/>
+		<result property="password" column="password"/>
+		<result property="createDate" column="create_date"/>
+		<result property="remark" column="remark"/>
+	</resultMap>
+	
+	<insert id="addUser" parameterType="cn.wbull.system.model.User" >
+		INSERT INTO t_s_user (uid,uname,sex,tel,enabled,password,create_date,remark) VALUES (#{uid},#{uname},#{sex},#{tel},#{enabled},#{password},#{createDate},#{remark})
+	</insert>
+	
+	<select id="getAllUsers" resultMap="userResultMap">
+		SELECT * FROM t_s_user
+	</select>
+	
+	<select id="getUserByUid" parameterType="java.lang.String" resultMap="userResultMap">
+		SELECT * FROM t_s_user WHERE uid = #{uid}
+	</select>
+	
+	<delete id="deleteUser" parameterType="java.lang.Integer">
+		DELETE FROM t_s_user WHERE uid = #{uid}
+	</delete>
+
+	<update id="updateUser" parameterType="cn.wbull.system.model.User">
+		UPDATE t_s_user
+		<set>
+			<if test="uname != null">
+				uname = #{uname}
+			</if>
+			<if test="sex != null">
+				sex = #{sex}
+			</if>
+			<if test="tel != null">
+				tel = #{tel}
+			</if>
+			<if test="enabled != null">
+				enabled = #{enabled}
+			</if>
+			<if test="password != null">
+				password = #{password}
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate}
+			</if>
+			<if test="remark != null">
+				remark = #{remark}
+			</if>
+		</set>
+		WHERE uid = #{uid}
+	</update>
+</mapper>

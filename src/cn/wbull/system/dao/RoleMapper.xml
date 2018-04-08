@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="cn.wbull.system.dao.IRoleMapper">
+	<resultMap type="cn.wbull.system.model.Role" id="roleResultMap">
+		<id property="id" column="id"/>
+		<result property="roid" column="roid"/>
+		<result property="roname" column="roname"/>
+		<result property="enabled" column="enabled"/>
+		<result property="createDate" column="create_date"/>
+		<result property="updateDate" column="update_date"/>
+		<result property="remark" column="remark"/>
+	</resultMap>
+	
+	<insert id="addRole" parameterType="cn.wbull.system.model.Role" >
+		INSERT INTO t_s_role (roid,roname,enabled,create_date,update_date,remark) VALUES (#{roid},#{rouname},#{enabled},#{create_date},#{update_date},#{remark})
+	</insert>
+	
+	<select id="getAllRoles" resultMap="roleResultMap">
+		SELECT * FROM t_s_role
+	</select>
+	
+	<select id="getRoleByUid" parameterType="java.lang.Integer" resultMap="roleResultMap">
+		SELECT * FROM t_s_role r,t_s_user_role u WHERE u.userid = #{uid} AND r.id = u.roid
+	</select>
+	
+	<delete id="deleteRoleByRoid" parameterType="java.lang.String">
+		DELETE FROM t_s_roler WHERE roid = #{roid}
+	</delete>
+	
+	<update id="updateRole" parameterType="cn.wbull.system.model.Role">
+		UPDATE t_s_role 
+		<set>
+			<if test="roname !=null">
+				roname = #{roname}
+			</if>
+			<if test="enabled != enabled">
+				enabled = #{enabled}
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate}
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate}
+			</if>
+			<if test="remark != null">
+				remark = #{remark}
+			</if>
+		</set>
+		WHERE roid = #{roid}
+	</update>
+</mapper>
