@@ -44,7 +44,7 @@
 						<input type="submit" class="btn text-center login-btn" value="立即登录">
 					</form>
 					<div class="forget">
-						 <a href="test.do" class="forget-pwd text-small fl">测试test方法</a> <a href="toRegister.do" class="forget-new text-small fr" id="forget-new">创建一个新账号</a>
+						 <a href="class/toClassStu.do" class="forget-pwd text-small fl">进入查询页面</a><a href="toRegister.do" class="forget-new text-small fr" id="forget-new">创建一个新账号</a>
 					</div>
 				</div>
 			</div>
