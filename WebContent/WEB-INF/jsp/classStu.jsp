@@ -11,8 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-
-        <form action="class/stuList.do" method="post">
+	<div style="margin-top: 10%;">
+		<form action="stulist.do" method="post" style="margin-left: 47%;">
             <table >
                 <tr>
                     <td>
@@ -79,6 +79,8 @@
                 </tr>
             </table>
         </form>
-
+		
+	</div>
+        
 </body>
 </html>

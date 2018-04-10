@@ -15,6 +15,6 @@ public class ClassStuListServiceImpl implements IClassStuListService {
 
     @Override
     public List<ClassStuList> getStuList(int turns, int room, String af) {
-        return classStuListMapper.getStuListByTurn(turns,room,af);
+        return classStuListMapper.getStuListByTurn(turns+"",room+"",af);
     }
 }

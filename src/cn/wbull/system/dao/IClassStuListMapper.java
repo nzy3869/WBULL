@@ -4,6 +4,8 @@ import cn.wbull.system.model.ClassStuList;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 /**
  * 查询上/下午某考场某伦的考生名单
  */
@@ -15,5 +17,5 @@ public interface IClassStuListMapper {
      * @param af 上下午
      * @return 该考场学生名单
      */
-    public List<ClassStuList> getStuListByTurn(int turns,int room,String af);
+    public List<ClassStuList> getStuListByTurn(@Param("turns")String turns,@Param("room")String room,@Param("af")String af);
 }

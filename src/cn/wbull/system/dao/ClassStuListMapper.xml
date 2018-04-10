@@ -3,11 +3,11 @@
 <mapper namespace="cn.wbull.system.dao.IClassStuListMapper">
     <resultMap type="cn.wbull.system.model.ClassStuList" id="classStuListResultMap">
         <result property="uid" column="uid"/>
-        <result property="uname" column="name"/>
+        <result property="uname" column="NAME"/>
         <result property="testId" column="test_id"/>
     </resultMap>
 
-    <select id="getStuListByTurn" parameterType="java.lang.String" resultMap="classStuListResultMap">
+    <select id="getStuListByTurn"  resultMap="classStuListResultMap">
 
         SELECT
             uid,
@@ -30,7 +30,7 @@
                         t_c_classes_turns
                     WHERE
                         class_id = #{room}
-                    AND af = '#{af}'
+                    AND af = #{af}
                         )
                     )
     </select>
