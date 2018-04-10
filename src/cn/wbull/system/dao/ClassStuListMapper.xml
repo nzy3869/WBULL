@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="cn.wbull.system.dao.IClassStuListMapper">
+    <resultMap type="cn.wbull.system.model.ClassStuList" id="classStuListResultMap">
+        <result property="uid" column="uid"/>
+        <result property="uname" column="name"/>
+        <result property="testId" column="test_id"/>
+    </resultMap>
+
+    <select id="getStuListByTurn" parameterType="java.lang.String" resultMap="classStuListResultMap">
+
+        SELECT
+            uid,
+             NAME,
+            test_id
+        FROM
+            t_s_user
+        WHERE
+            uid IN (
+                SELECT
+                     uid
+                FROM
+                    t_c_student_chouqian
+                WHERE
+                    turn = #{turns}
+                AND classes_id IN (
+                    SELECT
+                        id
+                    FROM
+                        t_c_classes_turns
+                    WHERE
+                        class_id = #{room}
+                    AND af = '#{af}'
+                        )
+                    )
+    </select>
+</mapper>
